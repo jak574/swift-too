@@ -4,7 +4,7 @@ from .obsquery import SwiftObservation
 from .schema import SwiftPlanGetSchema, SwiftPlanSchema
 
 
-class PlanQuery(
+class SwiftPlan(
     SwiftPlanSchema,
     TOOAPIBaseClass,
     TOOAPIClockCorrect,
@@ -75,7 +75,6 @@ class PlanQuery(
 
 
 # Class aliases for better PEP8 compliant and future compat
-PPST = PlanQuery
-SwiftPPST = PlanQuery
-SwiftPPST = PlanQuery
-SwiftPlanQuery = PlanQuery
+PPST = SwiftPlan
+SwiftPPST = SwiftPlan
+SwiftPlanQuery = SwiftPlan

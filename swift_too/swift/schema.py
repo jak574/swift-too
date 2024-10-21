@@ -28,11 +28,11 @@ class SwiftInstrumentSchema(BaseSchema):
     def check_instruments(cls, data):
         if isinstance(data, dict):
             if isinstance(data["bat"], int):
-                data["bat"] = f"0x{data['bat']:04x}"
+                data["bat_mode"] = f"0x{data['bat']:04x}"
             if isinstance(data["uvot"], int):
-                data["uvot"] = f"0x{data['uvot']:04x}"
+                data["uvot_mode"] = f"0x{data['uvot']:04x}"
             if isinstance(data["xrt"], int):
-                data["xrt"] = XRTMODES[data["xrt"]]
+                data["xrt_mode"] = XRTMODES[data["xrt"]]
         return data
 
 
@@ -150,7 +150,7 @@ class SwiftPlanGetSchema(
         return data
 
 
-class SwiftAFSTEntry(
+class SwiftObservationEntry(
     DateRangeSchema,
     PointingSchema,
     TargetIdSegment,
@@ -229,8 +229,8 @@ class SwiftAFSTEntry(
         ]
 
 
-class SwiftAFSTSchema(BaseSchema):
-    entries: list[SwiftAFSTEntry]
+class SwiftObservationsSchema(BaseSchema):
+    entries: list[SwiftObservationEntry]
     afstmax: Optional[datetime] = None
     status: TOOStatus
 
@@ -239,7 +239,7 @@ class OptionalRadiusSchema(BaseSchema):
     radius: Optional[float] = None
 
 
-class SwiftAFSTGetSchema(
+class SwiftObservationsGetSchema(
     OptionalDateRangeSchema, OptionalCoordSchema, OptionalRadiusSchema
 ):
     targetid: Optional[int] = None

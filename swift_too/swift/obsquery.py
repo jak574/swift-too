@@ -12,10 +12,10 @@ from .data import TOOAPIDownloadData
 
 # from .instruments import TOOAPIInstruments
 from .obsid import TOOAPIObsID
-from .schema import SwiftAFSTGetSchema, SwiftAFSTSchema
+from .schema import SwiftObservationsGetSchema, SwiftObservationsSchema
 
 
-class Observation(TOOAPIBaseClass, TOOAPIDownloadData):
+class SwiftObservationsByObsID(TOOAPIBaseClass, TOOAPIDownloadData):
     """Class to summarize observations taken for given observation ID (obsnum).
     Whereas observations are typically one or more individual snapshot, in TOO
     API speak a `SwiftAFSTEntry`, this class summarizes all snapshots into a
@@ -53,7 +53,6 @@ class Observation(TOOAPIBaseClass, TOOAPIDownloadData):
     """
 
     # Core API definitions
-    #    api_name = "SwiftObservation"
     _parameters = [
         "begin",
         "end",
@@ -71,7 +70,7 @@ class Observation(TOOAPIBaseClass, TOOAPIDownloadData):
     def __init__(self):
         # All the SwiftAFSTEntries for this observation
         TOOAPIObsID.__init__(self)
-        self.entries = SwiftAFST()
+        self.entries = SwiftObservations()
 
     def __getitem__(self, index):
         return self.entries[index]
@@ -186,21 +185,21 @@ class Observation(TOOAPIBaseClass, TOOAPIDownloadData):
     segment = seg
 
 
-class Observations(dict, TOOAPIBaseClass):
-    """Adapted dictionary class for containing observations that mostly is just
-    to ensure that data can be displayed in a consistent format. Key is
-    typically the Swift Observation ID in SDC format (e.g. '00012345012')."""
+# class Observations(dict, TOOAPIBaseClass):
+#     """Adapted dictionary class for containing observations that mostly is just
+#     to ensure that data can be displayed in a consistent format. Key is
+#     typically the Swift Observation ID in SDC format (e.g. '00012345012')."""
 
-    @property
-    def _table(self):
-        if len(self.values()) > 0:
-            header = list(self.values())[0]._table[0]
-        else:
-            header = []
-        return header, [self[obsid]._table[1][0] for obsid in self.keys()]
+#     @property
+#     def _table(self):
+#         if len(self.values()) > 0:
+#             header = list(self.values())[0]._table[0]
+#         else:
+#             header = []
+#         return header, [self[obsid]._table[1][0] for obsid in self.keys()]
 
 
-class ObsQuery(
+class SwiftObservations(
     TOOAPIBaseClass,
     TOOAPIDateRange,
     TOOAPISkyCoord,
@@ -235,29 +234,15 @@ class ObsQuery(
     shared_secret: str
         TOO API shared secret (default 'anonymous')
     entries : list
-        List of observations (`SwiftAFSTEntry`)
+        List of observations (`SwiftObservationEntry`)
     status : TOOStatus
         Status of API request
     afstmax: datetime
         When is the AFST valid up to
     """
 
-    # # Define API name
-    # api_name = "SwiftAFST"
-    # # Contents of the _parameters
-    # _parameters = [
-    #     "username",
-    #     "begin",
-    #     "end",
-    #     "ra",
-    #     "dec",
-    #     "radius",
-    #     "targetid",
-    #     "obsnum",
-    # ]
-
-    _schema = SwiftAFSTSchema
-    _get_schema = SwiftAFSTGetSchema
+    _schema = SwiftObservationsSchema
+    _get_schema = SwiftObservationsGetSchema
     _local_args = [
         "obsid",
         "name",
@@ -266,9 +251,6 @@ class ObsQuery(
         "target_id",
         "shared_secret",
     ]
-    #    _attributes = ["status", "afstmax", "entries"]
-    #    # Acceptable classes that be part of this class
-    #    _subclasses = [SwiftAFSTEntry, TOOStatus]
 
     def __init__(self, *args, **kwargs):
         """
@@ -321,7 +303,7 @@ class ObsQuery(
         self.afstmax = None
 
         # Observations
-        self._observations = Observations()
+        self._observations = None  # Observations() FIXME
 
         # See if we pass validation from the constructor, but don't record
         # errors if we don't
@@ -343,7 +325,7 @@ class ObsQuery(
     def observations(self):
         if len(self.entries) > 0 and len(self._observations.keys()) == 0:
             for q in self.entries:
-                self._observations[q.obsnum] = Observation()
+                self._observations[q.obsnum] = None  # Observation() FIXME
             _ = [self._observations[q.obsnum].append(q) for q in self.entries]
         return self._observations
 
@@ -384,11 +366,3 @@ class ObsQuery(
                 return False
 
         return True
-
-
-# Alias names for class for better PEP8 and future compat
-SwiftAFST = ObsQuery
-SwiftObsQuery = SwiftAFST
-AFST = SwiftAFST
-SwiftObservations = Observations
-SwiftObservation = Observation
