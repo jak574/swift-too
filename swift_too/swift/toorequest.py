@@ -632,10 +632,3 @@ class TOORequest(
         else:
             header = []
         return header, tab
-
-
-# Aliases for class
-SwiftTOO = TOORequest
-SwiftTOORequest = TOORequest
-TOO = SwiftTOORequest
-SwiftTOO_Request = SwiftTOORequest

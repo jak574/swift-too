@@ -1,14 +1,16 @@
 from pydantic import ValidationError
 
-from .schema import SwiftTOORequestsGetSchema, SwiftTOORequestsSchema
 from ..base.common import TOOAPIBaseClass
 from ..base.daterange import TOOAPIDateRange
 from ..base.resolve import TOOAPIAutoResolve
-from ..base.skycoord import TOOAPISkyCoord
 from ..base.schema import TOOStatus
+from ..base.skycoord import TOOAPISkyCoord
+from .schema import SwiftTOORequestsGetSchema, SwiftTOORequestsSchema
 
 
-class TOORequests(TOOAPIBaseClass, TOOAPIDateRange, TOOAPISkyCoord, TOOAPIAutoResolve):
+class SwiftTOORequests(
+    TOOAPIBaseClass, TOOAPIDateRange, TOOAPISkyCoord, TOOAPIAutoResolve
+):
     """Class used to obtain details about previous TOO requests.
 
     Attributes
@@ -163,6 +165,4 @@ class TOORequests(TOOAPIBaseClass, TOOAPIDateRange, TOOAPISkyCoord, TOOAPIAutoRe
 
 
 # Backwards compatible class name aliases
-SwiftTOORequests = TOORequests
-SwiftTOORequests = TOORequests
-SwiftTOORequests = TOORequests
+TOORequests = SwiftTOORequests
