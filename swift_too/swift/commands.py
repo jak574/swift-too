@@ -20,9 +20,9 @@ class SwiftManyPointCommand(TOOAPIBaseClass, TOOAPIDateRange, TOOAPIObsID):
         "ra",
         "dec",
         "roll",
-        "batmode",
-        "xrtmode",
-        "uvotmode",
+        "bat_mode",
+        "xrt_mode",
+        "uvot_mode",
         "executed",
         "source_name",
         "status",
@@ -39,9 +39,9 @@ class SwiftManyPointCommand(TOOAPIBaseClass, TOOAPIDateRange, TOOAPIObsID):
         self.ra = None
         self.dec = None
         self.roll = None
-        self.batmode = None
-        self.xrtmode = None
-        self.uvotmode = None
+        self.bat_mode = None
+        self.xrt_mode = None
+        self.uvot_mode = None
         self._executed = None
         self.source_name = None
         self.status = None
@@ -70,8 +70,8 @@ class SwiftManyPointCommand(TOOAPIBaseClass, TOOAPIDateRange, TOOAPIObsID):
             "dec",
             "roll",
             "merit",
-            "xrtmode",
-            "uvotmode",
+            "xrt_mode",
+            "uvot_mode",
             "executed",
         ]
         return header, [[getattr(self, param) for param in tabparams]]
@@ -191,9 +191,9 @@ class SwiftTOOCommand(TOOAPIBaseClass, TOOAPIObsID):
         "ra",
         "dec",
         "roll",
-        "batmode",
-        "xrtmode",
-        "uvotmode",
+        "bat_mode",
+        "xrt_mode",
+        "uvot_mode",
         "exposure",
         "grbmet",
         "merit",
@@ -214,9 +214,9 @@ class SwiftTOOCommand(TOOAPIBaseClass, TOOAPIObsID):
         self.ra = None
         self.dec = None
         self.roll = None
-        self.batmode = None
-        self.xrtmode = None
-        self.uvotmode = None
+        self.bat_mode = None
+        self.xrt_mode = None
+        self.uvot_mode = None
         self.exposure = None
         self.grbmet = None
         self.merit = None
@@ -274,8 +274,8 @@ class SwiftTOOCommand(TOOAPIBaseClass, TOOAPIObsID):
             "dec",
             "roll",
             "merit",
-            "xrtmode",
-            "uvotmode",
+            "xrt_mode",
+            "uvot_mode",
             "exposure",
             "uplink",
         ]

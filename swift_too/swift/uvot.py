@@ -17,7 +17,7 @@ class SwiftUVOTMode(
 
     Attributes
     ----------
-    uvotmode : int / str
+    uvot_mode : int / str
         UVOT mode to fetch information about (can be hex string or integer)
     status : TOOStatus
         TOO API submission status
@@ -68,7 +68,7 @@ class SwiftUVOTMode(
             for entry in self.entries:
                 table_columns.append([getattr(entry, col) for col in table_cols])
 
-            table = f"UVOT Mode: {self.uvotmode}\n"
+            table = f"UVOT Mode: {self.uvot_mode}\n"
             table += "The following table summarizes this mode, ordered by the filter sequence:\n"
             table += tabulate(table_columns, tablefmt="pretty")
             table += "\nFilter: The particular filter in the sequence.\n"
@@ -96,7 +96,7 @@ class SwiftUVOTMode(
                 self.status.errors
             )
         elif self.entries is not None:
-            html = f"<h2>UVOT Mode: {self.uvotmode}</h2>"
+            html = f"<h2>UVOT Mode: {self.uvot_mode}</h2>"
             html += "<p>The following table summarizes this mode, ordered by the filter sequence:</p>"
 
             html += '<table id="modelist" cellpadding=4 cellspacing=0>'

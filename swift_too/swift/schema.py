@@ -696,7 +696,7 @@ class SwiftTOOPostSchema(BaseSchema):
 
 
 class SwiftUVOTModeEntry(BaseSchema):
-    uvotmode: int
+    uvot_mode: int
     filter_num: int
     min_exposure: float
     filter_pos: int
@@ -723,11 +723,11 @@ class SwiftUVOTModeEntry(BaseSchema):
 
 
 class SwiftUVOTModeSchema(AutoResolveSchema):
-    uvotmode: Optional[int] = None
+    uvot_mode: Optional[int] = None
     entries: list[SwiftUVOTModeEntry] = []
 
 
 class SwiftUVOTModeGetSchema(BaseSchema):
-    uvotmode: int
+    uvot_mode: int
     ra: Optional[float] = None
     dec: Optional[float] = None
