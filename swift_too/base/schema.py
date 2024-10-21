@@ -310,14 +310,14 @@ class PointingGetSchemaBase(DateRangeSchema):
 class PlanEntryBase(DateRangeSchema, CoordSchema):
     """Schema for plan entry"""
 
-    targname: str
+    target_name: str
     exposure: int
 
 
 class PlanGetSchema(OptionalDateRangeSchema, OptionalCoordSchema):
     """Schema for getting plan entries"""
 
-    obsid: Union[str, int, None] = None
+    obs_id: Union[str, int, None] = None
     radius: Optional[float] = None
 
 
@@ -330,16 +330,16 @@ class PlanSchemaBase(BaseSchema):
 class TargetIdSegment(BaseSchema):
     """Schema for target ID segment"""
 
-    targetid: int
+    target_id: int
     seg: int
 
     @computed_field
-    def obsid(self) -> str:
-        return f"{self.targetid:08d}{self.seg:03d}"
+    def obs_id(self) -> str:
+        return f"{self.target_id:08d}{self.seg:03d}"
 
     @property
-    def obsidsc(self) -> int:
-        return self.targetid + (self.seg << 24)
+    def obs_idsc(self) -> int:
+        return self.target_id + (self.seg << 24)
 
 
 class EphemSchema(BaseSchema):

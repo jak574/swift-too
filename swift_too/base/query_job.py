@@ -2,7 +2,7 @@ from ..swift.calendar import Calendar
 from ..swift.clock import Clock
 from ..swift.data import Data
 from ..swift.guano import GUANO
-from ..swift.obsquery import AFST
+from ..swift.obsquery import SwiftObservations
 from ..swift.planquery import PPST
 from ..swift.requests import TOORequests
 from ..swift.saa import SAA
@@ -48,7 +48,7 @@ class QueryJob(TOOStatus):
     _subclasses = [
         TOOStatus,
         VisQuery,
-        AFST,
+        SwiftObservations,
         UVOTMode,
         PPST,
         TOORequests,

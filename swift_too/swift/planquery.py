@@ -1,6 +1,5 @@
 from ..base.common import TOOAPIBaseClass
 from .clock import TOOAPIClockCorrect
-from .obsquery import SwiftObservation
 from .schema import SwiftPlanGetSchema, SwiftPlanSchema
 
 
@@ -63,7 +62,7 @@ class SwiftPlan(
     def observations(self):
         if len(self.entries) > 0 and len(self._observations.keys()) == 0:
             for q in self.entries:
-                self._observations[q.obsnum] = SwiftObservation()
+                self._observations[q.obsnum] = None  # FIXME
             _ = [self._observations[q.obsnum].append(q) for q in self.entries]
         return self._observations
 

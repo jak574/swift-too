@@ -27,12 +27,12 @@ class SwiftInstrumentSchema(BaseSchema):
     @classmethod
     def check_instruments(cls, data):
         if isinstance(data, dict):
-            if isinstance(data["bat"], int):
-                data["bat_mode"] = f"0x{data['bat']:04x}"
-            if isinstance(data["uvot"], int):
-                data["uvot_mode"] = f"0x{data['uvot']:04x}"
-            if isinstance(data["xrt"], int):
-                data["xrt_mode"] = XRTMODES[data["xrt"]]
+            if isinstance(data["bat_mode"], int):
+                data["bat_mode"] = f"0x{data['bat_mode']:04x}"
+            if isinstance(data["uvot_mode"], int):
+                data["uvot_mode"] = f"0x{data['uvot_mode']:04x}"
+            if isinstance(data["xrt_mode"], int):
+                data["xrt_mode"] = XRTMODES[data["xrt_mode"]]
         return data
 
 
@@ -81,7 +81,7 @@ class SwiftPlanEntry(
         return (self.end - self.begin).seconds
 
     def __str__(self):
-        return f"{self.begin} - {self.end} Target: {self.target_name} ({self.targetid}/{self.seg}) Exp: {self.exposure}s"
+        return f"{self.begin} - {self.end} Target: {self.target_name} ({self.target_id}/{self.seg}) Exp: {self.exposure}s"
 
     @property
     def _table(self):
@@ -181,13 +181,13 @@ class SwiftObservationEntry(
         "dec": "Dec(J200)",
         "roll": "Roll (deg)",
         "target_name": "Target Name",
-        "targetid": "Target ID",
+        "target_id": "Target ID",
         "seg": "Segment",
         "ra_object": "Object RA(J2000)",
         "dec_object": "Object Dec(J2000)",
-        "xrt": "XRT Mode",
-        "uvot": "UVOT Mode",
-        "bat": "BAT Mode",
+        "xrt_mode": "XRT Mode",
+        "uvot_mode": "UVOT Mode",
+        "bat_mode": "BAT Mode",
         "fom": "Figure of Merit",
         "obstype": "Observation Type",
         "obsid": "Observation ID",
@@ -204,7 +204,7 @@ class SwiftObservationEntry(
         return (self.end - self.settle).seconds
 
     def __str__(self):
-        return f"{self.begin} - {self.end} Target: {self.target_name} ({self.targetid}/{self.seg}) Exp: {self.exposure}s Slewtime: {self.slewtime}s"
+        return f"{self.begin} - {self.end} Target: {self.target_name} ({self.target_id}/{self.seg}) Exp: {self.exposure}s Slewtime: {self.slewtime}s"
 
     @property
     def _table(self):
@@ -230,9 +230,9 @@ class SwiftObservationEntry(
 
 
 class SwiftObservationsSchema(BaseSchema):
-    entries: list[SwiftObservationEntry]
+    entries: list[SwiftObservationEntry] = []
     afstmax: Optional[datetime] = None
-    status: TOOStatus
+    status: TOOStatus = TOOStatus()
 
 
 class OptionalRadiusSchema(BaseSchema):
@@ -242,7 +242,7 @@ class OptionalRadiusSchema(BaseSchema):
 class SwiftObservationsGetSchema(
     OptionalDateRangeSchema, OptionalCoordSchema, OptionalRadiusSchema
 ):
-    targetid: Optional[int] = None
+    target_id: Optional[int] = None
     obsid: Optional[int] = None
 
     # Require at least one of the values to be set for the query
