@@ -58,8 +58,7 @@ FLOAT_REGEX = r"^[+-]?(?=\d*[.eE])(?=\.?\d)\d*\.?\d*(?:[eE][+-]?\d+)?$"
 INT_REGEX = r"^(0|[1-9][0-9]+)$"
 
 # Submission URL
-API_URL = "https://e1-swiftweb24.swift.psu.edu/api/v1/"
-API_URL = "http://localhost:8000/api/v1/"
+API_URL = "http://localhost:8000/api/v2/"
 
 
 def convert_to_dt(value, isutc=False, outfunc=datetime):

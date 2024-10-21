@@ -174,9 +174,7 @@ from .swift.requests import (  # noqa: F401
 )
 from .swift.saa import SAA, SwiftSAA  # noqa: F401
 from .swift.toorequest import (  # noqa: F401
-    TOO,
     SwiftTOO,
-    SwiftTOORequest,
     TOORequest,
 )
 from .swift.uvot import SwiftUVOTMode, UVOT_mode, UVOTMode  # noqa: F401
