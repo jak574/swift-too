@@ -1,7 +1,7 @@
 from .clock import TOOAPIClockCorrect
 
 from ..base.common import TOOAPIBaseClass
-from .obsquery import Swift_Observation
+from .obsquery import SwiftObservation
 from .schema import SwiftPlanGetSchema, SwiftPlanSchema
 
 
@@ -42,7 +42,7 @@ class PlanQuery(
     shared_secret: str
         TOO API shared secret (default 'anonymous')
     entries : list
-        List of observations (`Swift_AFSTEntry`)
+        List of observations (`SwiftAFSTEntry`)
     status : TOOStatus
         Status of API request
     ppstmax: datetime
@@ -64,7 +64,7 @@ class PlanQuery(
     def observations(self):
         if len(self.entries) > 0 and len(self._observations.keys()) == 0:
             for q in self.entries:
-                self._observations[q.obsnum] = Swift_Observation()
+                self._observations[q.obsnum] = SwiftObservation()
             _ = [self._observations[q.obsnum].append(q) for q in self.entries]
         return self._observations
 
@@ -78,5 +78,5 @@ class PlanQuery(
 # Class aliases for better PEP8 compliant and future compat
 PPST = PlanQuery
 SwiftPPST = PlanQuery
-Swift_PPST = PlanQuery
-Swift_PlanQuery = PlanQuery
+SwiftPPST = PlanQuery
+SwiftPlanQuery = PlanQuery

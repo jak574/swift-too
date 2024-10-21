@@ -7,7 +7,7 @@ from ..base.schema import TOOStatus
 from .clock import TOOAPIClockCorrect
 
 
-# class Swift_SAAEntry(TOOAPIBaseClass, TOOAPIClockCorrect):
+# class SwiftSAAEntry(TOOAPIBaseClass, TOOAPIClockCorrect):
 #     """Simple class describing the start and end time of a Swift SAA passage.
 #      Attributes
 #     ----------
@@ -18,7 +18,7 @@ from .clock import TOOAPIClockCorrect
 #     """
 
 #     # API details
-#     api_name = "Swift_SAA_Entry"
+#     api_name = "SwiftSAA_Entry"
 #     # Returned values
 #     _attributes = ["begin", "end"]
 #     # Display names of columns
@@ -51,7 +51,7 @@ class SAA(TOOAPIBaseClass, TOOAPIDateRange, TOOAPIClockCorrect):
     Attributes
     ----------
     entries : list
-        Array of Swift_SAAEntry classes containing the windows.
+        Array of SwiftSAAEntry classes containing the windows.
     status : TOOStatus
         Status of API request
     """
@@ -117,5 +117,5 @@ class SAA(TOOAPIBaseClass, TOOAPIDateRange, TOOAPIClockCorrect):
 
 
 # Alias
-Swift_SAA = SAA
+SwiftSAA = SAA
 SwiftSAA = SAA

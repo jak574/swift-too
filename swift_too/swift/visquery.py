@@ -43,7 +43,7 @@ class VisQuery(
     shared_secret : str
         shared secret for TOO API (default 'anonymous')
     entries : list
-        List of visibility entries (`Swift_VisWindow`)
+        List of visibility entries (`SwiftVisWindow`)
     status : TOOStatus
         Status of API request
     """
@@ -118,4 +118,4 @@ class VisQuery(
 
 # Shorthand alias for class
 SwiftVisQuery = VisQuery
-Swift_VisQuery = SwiftVisQuery
+SwiftVisQuery = SwiftVisQuery

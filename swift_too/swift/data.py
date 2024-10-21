@@ -22,7 +22,7 @@ except ImportError:
         return args[0]
 
 
-class Swift_DataFile(TOOAPIBaseClass):
+class SwiftDataFile(TOOAPIBaseClass):
     """Class containing information about a swift data file that can be
     downloaded from the Swift Science Data Center
 
@@ -45,7 +45,7 @@ class Swift_DataFile(TOOAPIBaseClass):
     """
 
     # API name
-    api_name = "Swift_Data_File"
+    api_name = "SwiftData_File"
     # Attributes
     filename = None
     path = None
@@ -95,7 +95,7 @@ class Swift_DataFile(TOOAPIBaseClass):
         return True
 
 
-class Swift_Data(TOOAPIBaseClass, TOOAPIObsID):
+class SwiftData(TOOAPIBaseClass, TOOAPIObsID):
     """
     Class to download Swift data from the UK or US SDC for a given observation
     ID.
@@ -140,9 +140,9 @@ class Swift_Data(TOOAPIBaseClass, TOOAPIObsID):
     """
 
     # Core API definitions
-    api_name = "Swift_Data"
+    api_name = "SwiftData"
     # Classes used by this class
-    _subclasses = [Swift_DataFile, TOOStatus]
+    _subclasses = [SwiftDataFile, TOOStatus]
     # Values to send and return through the API
     _parameters = [
         "username",
@@ -177,7 +177,7 @@ class Swift_Data(TOOAPIBaseClass, TOOAPIObsID):
 
     def __init__(self, *args, **kwargs):
         """
-        Construct the Swift_Data class, and download data if required parameters
+        Construct the SwiftData class, and download data if required parameters
         are supplied.
 
         Parameters
@@ -415,9 +415,9 @@ class Swift_Data(TOOAPIBaseClass, TOOAPIObsID):
 
 
 # Shorthand Aliases for better PEP8 compliant and future compat
-Data = Swift_Data
-DataFile = Swift_DataFile
-Swift_Data_File = Swift_DataFile
+Data = SwiftData
+DataFile = SwiftDataFile
+SwiftData_File = SwiftDataFile
 
 
 class TOOAPIDownloadData:
@@ -426,8 +426,8 @@ class TOOAPIDownloadData:
     def download(self, *args, **kwargs):
         """Download data from SDC"""
         # Set up the Data class
-        data = Swift_Data()
-        params = Swift_Data._parameters + Swift_Data._local
+        data = SwiftData()
+        params = SwiftData._parameters + SwiftData._local
         # Read in arguments
         for i in range(len(args)):
             setattr(data, params[i + 1], args[i])
@@ -446,5 +446,5 @@ class TOOAPIDownloadData:
         data.submit()
         if data.fetch:
             data.download()
-        # Return the Swift_Data class on completion
+        # Return the SwiftData class on completion
         return data

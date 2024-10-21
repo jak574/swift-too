@@ -10,7 +10,7 @@ from ..swift.schema import (
     SwiftTOOPutSchema,
     SwiftTOOSchema,
 )
-from .calendar import Swift_Calendar
+from .calendar import SwiftCalendar
 from .instruments import TOOAPIInstruments
 from .obsid import TOOAPIObsID
 
@@ -129,7 +129,7 @@ class TOORequest(
     """
 
     # Name the class
-    api_name = "Swift_TOO_Request"
+    api_name = "SwiftTOO_Request"
     # Paramaters that get submitted as part of the JSON
     _parameters = [
         "username",
@@ -433,7 +433,7 @@ class TOORequest(
         self.validate_only = None
 
         # Things that can be a subclass of this class
-        self._subclasses = [Swift_Calendar]
+        self._subclasses = [SwiftCalendar]
         self.ignorekeys = True
 
         # Parse argument keywords
@@ -635,7 +635,7 @@ class TOORequest(
 
 
 # Aliases for class
-Swift_TOO = TOORequest
-Swift_TOORequest = TOORequest
-TOO = Swift_TOORequest
-Swift_TOO_Request = Swift_TOORequest
+SwiftTOO = TOORequest
+SwiftTOORequest = TOORequest
+TOO = SwiftTOORequest
+SwiftTOO_Request = SwiftTOORequest

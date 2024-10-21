@@ -6,8 +6,8 @@ from ..base.status import TOOStatus
 from .obsid import TOOAPIObsID
 
 
-class Swift_ManyPointCommand(TOOAPIBaseClass, TOOAPIDateRange, TOOAPIObsID):
-    api_name = "Swift_ManyPointCommand"
+class SwiftManyPointCommand(TOOAPIBaseClass, TOOAPIDateRange, TOOAPIObsID):
+    api_name = "SwiftManyPointCommand"
 
     _parameters = ["username", "filename", "entry"]
     _attributes = [
@@ -98,8 +98,8 @@ class Swift_ManyPointCommand(TOOAPIBaseClass, TOOAPIDateRange, TOOAPIObsID):
         return None
 
 
-class Swift_ManyPoint(TOOAPIBaseClass):
-    api_name = "Swift_ManyPoint"
+class SwiftManyPoint(TOOAPIBaseClass):
+    api_name = "SwiftManyPoint"
     _parameters = ["username", "filename"]
     _attributes = [
         "year",
@@ -111,7 +111,7 @@ class Swift_ManyPoint(TOOAPIBaseClass):
         "entries",
         "status",
     ]
-    _subclasses = [TOOStatus, Swift_ManyPointCommand]
+    _subclasses = [TOOStatus, SwiftManyPointCommand]
 
     def __init__(self, *args, **kwargs):
         self.year = None
@@ -178,10 +178,10 @@ class Swift_ManyPoint(TOOAPIBaseClass):
         return {ent.targetid: ent.exposure for ent in self if ent.exposure is not None}
 
 
-class Swift_TOOCommand(TOOAPIBaseClass, TOOAPIObsID):
+class SwiftTOOCommand(TOOAPIBaseClass, TOOAPIObsID):
     """Class structure used to report on results of TOO API interactions"""
 
-    api_name = "Swift_TOOCommand"
+    api_name = "SwiftTOOCommand"
     _parameters = ["username", "filename"]
     _attributes = [
         "type",
@@ -287,12 +287,12 @@ class Swift_TOOCommand(TOOAPIBaseClass, TOOAPIObsID):
         return False
 
 
-class Swift_TOOCommands(TOOAPIBaseClass, TOOAPIDateRange):
-    api_name = "Swift_TOOCommands"
+class SwiftTOOCommands(TOOAPIBaseClass, TOOAPIDateRange):
+    api_name = "SwiftTOOCommands"
     _parameters = ["username", "begin", "end", "limit"]
     _attributes = ["status", "entries"]
     _local = ["length"]
-    _subclasses = [TOOStatus, Swift_TOOCommand]
+    _subclasses = [TOOStatus, SwiftTOOCommand]
 
     def __init__(self, *args, **kwargs):
         self.begin = None
@@ -328,13 +328,13 @@ class Swift_TOOCommands(TOOAPIBaseClass, TOOAPIDateRange):
         return False
 
 
-class Swift_ManyPoints(TOOAPIBaseClass, TOOAPIDateRange):
-    api_name = "Swift_ManyPoints"
+class SwiftManyPoints(TOOAPIBaseClass, TOOAPIDateRange):
+    api_name = "SwiftManyPoints"
     _parameters = ["username", "begin", "end", "limit"]
     _attributes = ["status", "entries"]
     _local = ["length"]
 
-    _subclasses = [TOOStatus, Swift_ManyPoint]
+    _subclasses = [TOOStatus, SwiftManyPoint]
 
     def __init__(self, *args, **kwargs):
         self.begin = None
@@ -364,12 +364,12 @@ class Swift_ManyPoints(TOOAPIBaseClass, TOOAPIDateRange):
         [ent._post_process() for ent in self]
 
 
-class Swift_Commands(TOOAPIBaseClass, TOOAPIDateRange):
-    api_name = "Swift_Commands"
+class SwiftCommands(TOOAPIBaseClass, TOOAPIDateRange):
+    api_name = "SwiftCommands"
     _parameters = ["username", "begin", "end", "limit"]
     _attributes = ["status", "entries"]
     _local = ["length"]
-    _subclasses = [TOOStatus, Swift_ManyPoint, Swift_TOOCommand]
+    _subclasses = [TOOStatus, SwiftManyPoint, SwiftTOOCommand]
 
     def __init__(self, *args, **kwargs):
         self.begin = None
@@ -399,10 +399,10 @@ class Swift_Commands(TOOAPIBaseClass, TOOAPIDateRange):
         [ent._post_process() for ent in self]
 
 
-class Swift_TOOGroup(TOOAPIBaseClass):
-    api_name = "Swift_TOOGroup"
+class SwiftTOOGroup(TOOAPIBaseClass):
+    api_name = "SwiftTOOGroup"
     _attributes = ["groupname", "entries"]
-    _subclasses = [Swift_TOOCommand]
+    _subclasses = [SwiftTOOCommand]
 
     def __init__(self):
         # Internal stuff
@@ -422,16 +422,16 @@ class Swift_TOOGroup(TOOAPIBaseClass):
         return len(self.entries)
 
 
-class Swift_TOOGroups(TOOAPIBaseClass, TOOAPIDateRange):
-    api_name = "Swift_TOOGroups"
+class SwiftTOOGroups(TOOAPIBaseClass, TOOAPIDateRange):
+    api_name = "SwiftTOOGroups"
     _parameters = ["username", "begin", "end", "limit"]
     _attributes = ["status", "entries"]
     _local = ["length"]
     _subclasses = [
         TOOStatus,
-        Swift_ManyPoint,
-        Swift_TOOCommand,
-        Swift_TOOGroup,
+        SwiftManyPoint,
+        SwiftTOOCommand,
+        SwiftTOOGroup,
     ]
 
     def __init__(self, *args, **kwargs):
@@ -472,10 +472,10 @@ class Swift_TOOGroups(TOOAPIBaseClass, TOOAPIDateRange):
 
 
 # Shortcuts
-ManyPoint = Swift_ManyPoint
-ManyPoints = Swift_ManyPoints
-TOOCommand = Swift_TOOCommand
-TOOCommands = Swift_TOOCommands
-Commands = Swift_Commands
-TOOGroup = Swift_TOOGroup
-TOOGroups = Swift_TOOGroups
+ManyPoint = SwiftManyPoint
+ManyPoints = SwiftManyPoints
+TOOCommand = SwiftTOOCommand
+TOOCommands = SwiftTOOCommands
+Commands = SwiftCommands
+TOOGroup = SwiftTOOGroup
+TOOGroups = SwiftTOOGroups

@@ -151,4 +151,4 @@ UVOTModeEntry = SwiftUVOTModeEntry
 # Backwards compatibility names
 UVOT_mode_entry = SwiftUVOTModeEntry
 UVOT_mode = SwiftUVOTMode
-Swift_UVOTMode = SwiftUVOTMode
+SwiftUVOTMode = SwiftUVOTMode

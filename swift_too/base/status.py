@@ -1,7 +1,7 @@
 from .common import TOOAPIBaseClass
 
 
-class Swift_TOO_Status(TOOAPIBaseClass):
+class SwiftTOO_Status(TOOAPIBaseClass):
     """Simple class to describe the status of a submitted TOO API request
 
     Attributes
@@ -40,7 +40,7 @@ class Swift_TOO_Status(TOOAPIBaseClass):
         "result",
     ]
     _local = ["api_name", "shared_secret"]
-    api_name = "Swift_TOO_Status"
+    api_name = "SwiftTOO_Status"
 
     def __init__(self, *args, **kwargs):
         """
@@ -115,5 +115,5 @@ class Swift_TOO_Status(TOOAPIBaseClass):
 
 
 # Aliases for better PEP8 compliance, and future API updates
-Swift_TOOStatus = Swift_TOO_Status
-TOOStatus = Swift_TOOStatus
+SwiftTOOStatus = SwiftTOO_Status
+TOOStatus = SwiftTOOStatus

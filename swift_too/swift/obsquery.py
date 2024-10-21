@@ -17,7 +17,7 @@ from pydantic import ValidationError
 class Observation(TOOAPIBaseClass, TOOAPIDownloadData):
     """Class to summarize observations taken for given observation ID (obsnum).
     Whereas observations are typically one or more individual snapshot, in TOO
-    API speak a `Swift_AFSTEntry`, this class summarizes all snapshots into a
+    API speak a `SwiftAFSTEntry`, this class summarizes all snapshots into a
     single begin time, end time. Note that as ra/dec varies between each
     snapshot, only `ra_object`, `dec_object` are given as coordinates.
 
@@ -52,7 +52,7 @@ class Observation(TOOAPIBaseClass, TOOAPIDownloadData):
     """
 
     # Core API definitions
-    #    api_name = "Swift_Observation"
+    #    api_name = "SwiftObservation"
     _parameters = [
         "begin",
         "end",
@@ -68,9 +68,9 @@ class Observation(TOOAPIBaseClass, TOOAPIDownloadData):
     ]
 
     def __init__(self):
-        # All the Swift_AFSTEntries for this observation
+        # All the SwiftAFSTEntries for this observation
         TOOAPIObsID.__init__(self)
-        self.entries = Swift_AFST()
+        self.entries = SwiftAFST()
 
     def __getitem__(self, index):
         return self.entries[index]
@@ -234,7 +234,7 @@ class ObsQuery(
     shared_secret: str
         TOO API shared secret (default 'anonymous')
     entries : list
-        List of observations (`Swift_AFSTEntry`)
+        List of observations (`SwiftAFSTEntry`)
     status : TOOStatus
         Status of API request
     afstmax: datetime
@@ -242,7 +242,7 @@ class ObsQuery(
     """
 
     # # Define API name
-    # api_name = "Swift_AFST"
+    # api_name = "SwiftAFST"
     # # Contents of the _parameters
     # _parameters = [
     #     "username",
@@ -267,7 +267,7 @@ class ObsQuery(
     ]
     #    _attributes = ["status", "afstmax", "entries"]
     #    # Acceptable classes that be part of this class
-    #    _subclasses = [Swift_AFSTEntry, TOOStatus]
+    #    _subclasses = [SwiftAFSTEntry, TOOStatus]
 
     def __init__(self, *args, **kwargs):
         """
@@ -386,8 +386,8 @@ class ObsQuery(
 
 
 # Alias names for class for better PEP8 and future compat
-Swift_AFST = ObsQuery
-Swift_ObsQuery = Swift_AFST
-AFST = Swift_AFST
-Swift_Observations = Observations
-Swift_Observation = Observation
+SwiftAFST = ObsQuery
+SwiftObsQuery = SwiftAFST
+AFST = SwiftAFST
+SwiftObservations = Observations
+SwiftObservation = Observation

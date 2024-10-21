@@ -4,7 +4,7 @@ from ..base.common import TOOAPIBaseClass, convert_to_dt, swiftdatetime
 from ..base.status import TOOStatus
 
 
-class Swift_Clock(TOOAPIBaseClass):
+class SwiftClock(TOOAPIBaseClass):
     """Class to obtain clock corrections, MET values and corrected UTC times for
     Swift. Typical use of the class is to pass a MET value, Swift Time
     (essentially MET in datetime format), or a UTC datetime. The API returns
@@ -32,7 +32,7 @@ class Swift_Clock(TOOAPIBaseClass):
     """
 
     # API details
-    api_name = "Swift_Clock"
+    api_name = "SwiftClock"
     # Arguments
     _parameters = ["username", "met", "swifttime", "utctime"]
     # Returned values
@@ -208,7 +208,7 @@ class Swift_Clock(TOOAPIBaseClass):
     utc = utctime
 
 
-Clock = Swift_Clock
+Clock = SwiftClock
 
 
 def index_datetimes(dictionary, i=0, values=[], setvals=None):
@@ -219,8 +219,8 @@ def index_datetimes(dictionary, i=0, values=[], setvals=None):
     # Go through all keys
     for key in keys:
         value = dictionary[key]
-        # Don't index any `Swift_Clock`s
-        if type(value) is Swift_Clock:
+        # Don't index any `SwiftClock`s
+        if type(value) is SwiftClock:
             continue
         # If value is another dict, recurse
         if isinstance(value, dict):
@@ -234,7 +234,7 @@ def index_datetimes(dictionary, i=0, values=[], setvals=None):
                 )
 
         # If value is a datetime, record and/or update to the result from
-        # Swift_Clock, increment the counter
+        # SwiftClock, increment the counter
         elif isinstance(value, datetime):
             if setvals is not None:
                 dictionary[key] = setvals[i]
@@ -251,12 +251,12 @@ def index_datetimes(dictionary, i=0, values=[], setvals=None):
 
 class TOOAPIClockCorrect:
     """Mixin for clock correction. Provides the  `clock_correct` method, which
-    spiders through a class looking for datetimes, submits them to Swift_Clock,
-    and then replaces them all with the results of Swift_Clock."""
+    spiders through a class looking for datetimes, submits them to SwiftClock,
+    and then replaces them all with the results of SwiftClock."""
 
     def clock_correct(self):
         """Spider through the class dictionary recording datetimes, and then
-        updating them using Swift_Clock"""
+        updating them using SwiftClock"""
         if not hasattr(self, "_clock"):
             # Read in all datetime values into an array
             _, datevalues = index_datetimes(self.__dict__, 0, [])
@@ -266,9 +266,9 @@ class TOOAPIClockCorrect:
             dts = [dt for dt in datevalues]
             if len(dts) > 0:
                 if self._isutc:
-                    self._clock = Swift_Clock(utctime=dts)
+                    self._clock = SwiftClock(utctime=dts)
                 else:
-                    self._clock = Swift_Clock(swifttime=dts)
+                    self._clock = SwiftClock(swifttime=dts)
 
                 # Replace existing datetime values with clock corrected swiftdatetimes
                 _, _ = index_datetimes(self.__dict__, 0, [], setvals=self._clock)

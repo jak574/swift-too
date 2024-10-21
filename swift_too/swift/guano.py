@@ -8,7 +8,7 @@ from ..base.schema import TOOStatus
 from .clock import TOOAPIClockCorrect
 
 
-# class Swift_GUANOGTI(TOOAPIBaseClass, TOOAPIClockCorrect):
+# class SwiftGUANOGTI(TOOAPIBaseClass, TOOAPIClockCorrect):
 #     """Define GUANO event data Good Time Intervals (GTI)
 
 #     Attributes
@@ -29,7 +29,7 @@ from .clock import TOOAPIClockCorrect
 #         inaccuracies in the Swift clock and also any leap seconds
 #     """
 
-#     api_name = "Swift_GUANO_GTI"
+#     api_name = "SwiftGUANO_GTI"
 #     _attributes = ["begin", "end", "exposure", "utcf", "acs", "filename"]
 
 #     def __init__(self):
@@ -46,7 +46,7 @@ from .clock import TOOAPIClockCorrect
 #         return f"{self.begin} - {self.end} ({self.exposure})"
 
 
-# class Swift_GUANOData(
+# class SwiftGUANOData(
 #     TOOAPIBaseClass,
 #     TOOAPIObsID,
 #     TOOAPIClockCorrect,
@@ -69,7 +69,7 @@ from .clock import TOOAPIClockCorrect
 #         end time of GUANO dump
 #     triggertime : datetime
 #         trigger time of event that generated GUANO dump
-#     gti : Swift_GUANOGTI
+#     gti : SwiftGUANOGTI
 #         Good Time Interval (GTI) for the combined event data
 #     all_gtis : list
 #         list of individual GTIs. More than one GTI can exist if data is split
@@ -88,11 +88,11 @@ from .clock import TOOAPIClockCorrect
 #         located in the subthreshold triggers section of the SDC, rather
 #         than being associated with normal observation data. If this is
 #         true, the data can be fetched utilizing the 'subthresh = True'
-#         option of Swift_Data (AKA Data)
+#         option of SwiftData (AKA Data)
 #     """
 
 #     # API Name
-#     api_name = "Swift_GUANO_Data"
+#     api_name = "SwiftGUANO_Data"
 
 #     # Core API definitions
 #     _parameters = ["obsid", "triggertime"]
@@ -107,7 +107,7 @@ from .clock import TOOAPIClockCorrect
 #         "utcf",
 #         "subthresh",
 #     ]
-#     _subclasses = [Swift_GUANOGTI]
+#     _subclasses = [SwiftGUANOGTI]
 
 #     def __init__(self):
 #         # All times UTC
@@ -140,7 +140,7 @@ from .clock import TOOAPIClockCorrect
 #             return False
 
 
-# class Swift_GUANOEntry(
+# class SwiftGUANOEntry(
 #     TOOAPIBaseClass,
 #     TOOAPIObsID,
 #     TOOAPIClockCorrect,
@@ -168,9 +168,9 @@ from .clock import TOOAPIClockCorrect
 #     """
 
 #     # API name
-#     api_name = "Swift_GUANO_Entry"
+#     api_name = "SwiftGUANO_Entry"
 #     # Core API definitions
-#     _subclasses = [Swift_GUANOData]
+#     _subclasses = [SwiftGUANOData]
 #     _parameters = ["triggertime"]
 #     _local = ["begin", "end", "shared_secret"]
 #     _attributes = [
@@ -412,12 +412,12 @@ class GUANO(TOOAPIBaseClass, TOOAPIDateRange, TOOAPIClockCorrect, TOOAPITriggerT
 
 
 # Shorthand alias names for class and for better PEP8 compliance
-Swift_GUANO = GUANO
 SwiftGUANO = GUANO
-# GUANOData = Swift_GUANOData
-# GUANOEntry = Swift_GUANOEntry
-# GUANOGTI = Swift_GUANOGTI
+SwiftGUANO = GUANO
+# GUANOData = SwiftGUANOData
+# GUANOEntry = SwiftGUANOEntry
+# GUANOGTI = SwiftGUANOGTI
 # Backwards API compat
-# Swift_GUANO_Entry = GUANOEntry
-# Swift_GUANO_GTI = GUANOGTI
-# Swift_GUANO_Entry = GUANOEntry
+# SwiftGUANO_Entry = GUANOEntry
+# SwiftGUANO_GTI = GUANOGTI
+# SwiftGUANO_Entry = GUANOEntry

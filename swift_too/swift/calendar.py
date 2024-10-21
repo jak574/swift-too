@@ -8,7 +8,7 @@ from .instruments import TOOAPIInstruments
 from .obsid import TOOAPIObsID
 
 
-class Swift_CalendarEntry(
+class SwiftCalendarEntry(
     TOOAPIBaseClass,
     TOOAPIInstruments,
     TOOAPIClockCorrect,
@@ -71,7 +71,7 @@ class Swift_CalendarEntry(
         "dec": "Declination (deg)",
         "targetid": "Target ID",
     }
-    api_name = "Swift_Calendar_Entry"
+    api_name = "SwiftCalendar_Entry"
 
     def __init__(self):
         # Parameters
@@ -104,7 +104,7 @@ class Swift_CalendarEntry(
         return header, [[getattr(self, row) for row in parameters]]
 
 
-class Swift_Calendar(
+class SwiftCalendar(
     TOOAPIBaseClass,
     TOOAPIClockCorrect,
     TOOAPIDateRange,
@@ -138,13 +138,13 @@ class Swift_Calendar(
     too_id : int
         Unique TOO identifying number
     entries : list
-        list of calendar entries returned by query (`Swift_CalendarEntries`)
-    status : Swift_TOOStatus
+        list of calendar entries returned by query (`SwiftCalendarEntries`)
+    status : SwiftTOOStatus
         Status of API request
     """
 
     # Core API definitions
-    api_name = "Swift_Calendar"
+    api_name = "SwiftCalendar"
     _parameters = [
         "username",
         "too_id",
@@ -161,7 +161,7 @@ class Swift_Calendar(
     # Local parameters
     _local = ["shared_secret", "length", "name"]
     # Subclasses used by class
-    _subclasses = [Swift_CalendarEntry, TOOStatus]
+    _subclasses = [SwiftCalendarEntry, TOOStatus]
 
     def __init__(self, *args, **kwargs):
         """
@@ -226,7 +226,7 @@ class Swift_Calendar(
 
 
 # Shorthand alias
-Calendar = Swift_Calendar
-CalendarEntry = Swift_CalendarEntry
+Calendar = SwiftCalendar
+CalendarEntry = SwiftCalendarEntry
 # Back compat
-Swift_Calendar_Entry = Swift_CalendarEntry
+SwiftCalendar_Entry = SwiftCalendarEntry

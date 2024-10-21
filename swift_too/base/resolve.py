@@ -8,7 +8,7 @@ from .skycoord import SkyCoordSchema, TOOAPISkyCoord
 
 
 class Resolve(TOOAPIBaseClass, TOOAPISkyCoord):
-    """Swift_Resolve class
+    """SwiftResolve class
 
     Performs name resolution using Simbad, TNS or MARS. Simply give the name of
     the source, and it will return `ra` and `dec` in decimal degrees, or a
@@ -96,7 +96,7 @@ class AutoResolveSchema(SkyCoordSchema):
 
 class TOOAPIAutoResolve:
     """Mixin to automatically any given `name` into RA/Dec coordinates using
-    `Swift_Resolve`"""
+    `SwiftResolve`"""
 
     _name: Optional[str] = None
     _source_name: Optional[str] = None
@@ -130,11 +130,11 @@ class TOOAPIAutoResolve:
         self.__name_setter(sourcename)
 
     def __name_setter(self, sourcename):
-        """If you set a name, use `Swift_Resolve` to retrieve it's `ra` and `dec`."""
+        """If you set a name, use `SwiftResolve` to retrieve it's `ra` and `dec`."""
         if self._name != sourcename:
             self._name = sourcename
             self._source_name = sourcename
-            self.resolve = Swift_Resolve(name=sourcename)
+            self.resolve = SwiftResolve(name=sourcename)
             self.resolve.get()
             if self.resolve.ra is not None:
                 self.ra = self.resolve.ra
@@ -145,4 +145,4 @@ class TOOAPIAutoResolve:
 
 # Shorthand alias for class
 SwiftResolve = Resolve
-Swift_Resolve = Resolve
+SwiftResolve = Resolve

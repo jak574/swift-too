@@ -4,7 +4,7 @@ the Neil Gehrels Swift Observatory (hereafter *Swift*).
 
 The module is split into the following main classes:
 
-1. Swift_TOO
+1. SwiftTOO
 
 This allows Target of Opportunity requests to be constructed and submitted. This
 includes basic validation before submission, and querying of the status of the
@@ -16,7 +16,7 @@ submission using this class. A debug mode is provided to allow you to test the
 process of submitting a TOO request to completion, without actually submitting a
 TOO.
 
-2. Swift_ObsQuery
+2. SwiftObsQuery
 
 This class allows you to query what observations Swift has already performed. It
 allows you to search for observations by target ID (a unique identifier for a
@@ -27,7 +27,7 @@ degrees, however we also support astropy's `SkyCoord` to allow for other
 coordinate systems to be used for searches, e.g. Galactic Coordinates. In
 addition you can narrow the search to specific date ranges.
 
-3. Swift_VisQuery
+3. SwiftVisQuery
 
 J2000 RA/dec (given as a `SkyCoord` or `ra` and `dec` properties in decimal
 degrees). Before submitting a TOO request it's important that you understand if
@@ -40,9 +40,9 @@ visiblity at 1 minute timescales, and includes Earth occultation and periods
 inside the South Atlantic Anomaly. As these are computationally expensive to
 calculate, we limit high resolution visibliity requests to 20 days in length.
 
-4. Swift_PlanQuery
+4. SwiftPlanQuery
 
-Similar to Swift_ObsQuery but in this case queries the Swift observing plan,
+Similar to SwiftObsQuery but in this case queries the Swift observing plan,
 otherwise known as the pre-planned science timeline (PPST). This allows the user
 to query what was planned to be observed by Swift, and what will be observed in
 the future. Please note that due to Swift's quick planning turn around, the
@@ -58,7 +58,7 @@ of a job. Typically a job will have 4 status values, `Queued`, `Processing`,
 completed. `Queued` means that the job has been accepted, but not yet processed.
 `Processing` means that the server is working on the results, but has not yet
 completed. `Rejected` means that the server rejected the job for any number of
-reasons, that are reported by in `Swift_TOOStatus` class.
+reasons, that are reported by in `SwiftTOOStatus` class.
 
 6. UVOT_mode
 
@@ -67,7 +67,7 @@ up the meaning of a given hex code, which is typically a table of UVOT filters
 associated with that mode, along with any configuration parameters, such as the
 size of the field of view, whether the data will be taken in event mode, etc.
 
-7. Swift_TOORequests
+7. SwiftTOORequests
 
 This class allows querying of TOO Requests submitted to Swift. By default this
 will give detail on the most recent 10 TOO requests submitted to Swift.
@@ -76,14 +76,14 @@ set time period. In addition if the `detail` parameter is set to `True`, then
 this retrieves all information about a TOO request, including non-public
 information, for TOO requests that you submitted, if you supply your `username`
 and `shared_secret`. The class essentially is a container for a number of
-`Swift_TOORequest` objects. In the case where targets are scheduled in the
-Swift planning calendar, a `Swift_Calendar` object will be attached which lists
+`SwiftTOORequest` objects. In the case where targets are scheduled in the
+Swift planning calendar, a `SwiftCalendar` object will be attached which lists
 the scheduled windows, and shows how much exposure was obtained during those
 windows.
 
-8. Swift_Calendar
+8. SwiftCalendar
 
-`Swift_Calendar` class allows for querying calendar entries for a given TOO. The
+`SwiftCalendar` class allows for querying calendar entries for a given TOO. The
 Calendar shows all planned observations for a TOO, along with an estimate of how
 much time was actually observed during the calendar window. Note that this is
 different from the Swift Plan, insofar as the Swift Calendar lists requested
@@ -92,41 +92,41 @@ oversubscription, and other issues, even if an object is in the Calendar, that
 is not guarantee that Swift will observe it on that day, only that it is in the
 queue to be observed.
 
-9. Swift_GUANO
+9. SwiftGUANO
 
-`Swift_GUANO` provides API access to data obtained by the *Gamma-Ray Urgent
+`SwiftGUANO` provides API access to data obtained by the *Gamma-Ray Urgent
 Archiver for Novel Opportunities* (GUANO). GUANO proactively dumps BAT event
 data, which would otherwise be lost, based on external triggers. These triggers
 include Fast Radio Bursts, Gamma-Ray Bursts from other missions, Gravitational
-Wave triggers and Neutrino triggers. `Swift_GUANO` allows to query these dumps
+Wave triggers and Neutrino triggers. `SwiftGUANO` allows to query these dumps
 and gives you metadata about the dump.
 
-10. Swift_Data
+10. SwiftData
 
-`Swift_Data` provides an easy interface to download archival or quick-look data
+`SwiftData` provides an easy interface to download archival or quick-look data
 from the Swift Science Data Centers in the USA or UK.
 
-11. Swift_Resolve
+11. SwiftResolve
 
-`Swift_Resolve` provides an simple interface to resolve target names into
+`SwiftResolve` provides an simple interface to resolve target names into
 coordinates, leveraging several name resolvers. This class is also called by
 other classes when you pass the `name` parameter instead of giving an `ra`,
 `dec` or `skycoord`.
 
-12. Swift_Clock
+12. SwiftClock
 
 For a given `utctime`, `mettime` or `swifttime` return a `swiftdatetime` object
 or objects, with clock correction applied. Primarily used internally as part of
 the `clock_correct` method, which applies clock correction to all times in a
 given class.
 
-13. Swift_SAA
+13. SwiftSAA
 
 Fetches times when Swift is passing through the South Atlantic Anomaly (SAA) for
 a given time period.
 
-Note that all module names have an alias that excludes the `Swift_` part, so for
-example, `Swift_VisQuery` becomes `VisQuery`.
+Note that all module names have an alias that excludes the `Swift` part, so for
+example, `SwiftVisQuery` becomes `VisQuery`.
 
 The Swift TOO API is built around a client/server model, in which API
 information is exchanged between the client's machine with the Swift API server
@@ -144,42 +144,41 @@ served basis. Typically processing requests takes a 10-20 seconds. Status of
 requests can be queried, and errors are reported back.
 """
 
-from .base.resolve import Resolve, Swift_Resolve  # noqa: F401
+from .base.resolve import Resolve, SwiftResolve  # noqa: F401
 from .base.query_job import QueryJob  # noqa: F401
-from .swift.calendar import Calendar, Swift_Calendar  # noqa: F401
-from .swift.clock import Clock, Swift_Clock  # noqa: F401
+from .swift.calendar import Calendar, SwiftCalendar  # noqa: F401
+from .swift.clock import Clock, SwiftClock  # noqa: F401
 from .swift.commands import (  # noqa: F401
     Commands,
     ManyPoint,
     ManyPoints,
-    Swift_Commands,
-    Swift_ManyPoint,
-    Swift_ManyPoints,
-    Swift_TOOCommand,
-    Swift_TOOCommands,
-    Swift_TOOGroup,
-    Swift_TOOGroups,
+    SwiftCommands,
+    SwiftManyPoint,
+    SwiftManyPoints,
+    SwiftTOOCommand,
+    SwiftTOOCommands,
+    SwiftTOOGroup,
+    SwiftTOOGroups,
     TOOCommand,
     TOOCommands,
     TOOGroup,
     TOOGroups,
 )
-from .swift.data import Data, Swift_Data  # noqa: F401
-from .swift.guano import GUANO, Swift_GUANO  # noqa: F401
-from .swift.obsquery import ObsQuery, Swift_ObsQuery  # noqa: F401
-from .swift.planquery import PlanQuery, Swift_PlanQuery  # noqa: F401
+from .swift.data import Data, SwiftData  # noqa: F401
+from .swift.guano import GUANO, SwiftGUANO  # noqa: F401
+from .swift.obsquery import ObsQuery, SwiftObsQuery  # noqa: F401
+from .swift.planquery import PlanQuery, SwiftPlanQuery  # noqa: F401
 from .swift.requests import (  # noqa: F401
-    Swift_TOO_Requests,
-    Swift_TOORequests,
+    SwiftTOORequests,
     TOORequests,
 )
-from .swift.saa import SAA, Swift_SAA  # noqa: F401
+from .swift.saa import SAA, SwiftSAA  # noqa: F401
 from .swift.toorequest import (  # noqa: F401
     TOO,
-    Swift_TOO,
-    Swift_TOO_Request,
+    SwiftTOO,
+    SwiftTOORequest,
     TOORequest,
 )
-from .swift.uvot import Swift_UVOTMode, UVOT_mode, UVOTMode  # noqa: F401
-from .swift.visquery import Swift_VisQuery, VisQuery  # noqa: F401
+from .swift.uvot import SwiftUVOTMode, UVOT_mode, UVOTMode  # noqa: F401
+from .swift.visquery import SwiftVisQuery, VisQuery  # noqa: F401
 from .version import version as __version__  # noqa: F401

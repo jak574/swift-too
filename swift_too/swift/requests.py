@@ -18,7 +18,7 @@ class TOORequests(TOOAPIBaseClass, TOOAPIDateRange, TOOAPISkyCoord, TOOAPIAutoRe
     api_key: str
         TOO API shared secret (default 'anonymous')
     entries : list
-        List of TOOs (`Swift_TOO_Request`)
+        List of TOOs (`SwiftTOORequest`)
     status : TOOStatus
         Status of API request
     detail : boolean
@@ -121,7 +121,7 @@ class TOORequests(TOOAPIBaseClass, TOOAPIDateRange, TOOAPISkyCoord, TOOAPIAutoRe
         return len(self.entries)
 
     def by_id(self, too_id):
-        """Return Swift_TOO_Request object for a given too_id.
+        """Return SwiftTOORequest object for a given too_id.
 
         Parameters
         ----------
@@ -130,7 +130,7 @@ class TOORequests(TOOAPIBaseClass, TOOAPIDateRange, TOOAPISkyCoord, TOOAPIAutoRe
 
         Returns
         -------
-        Swift_TOO_Request
+        SwiftTOORequest
             TOO request matching the given too_id
         """
         return {t.too_id: t for t in self.entries}[too_id]
@@ -163,6 +163,6 @@ class TOORequests(TOOAPIBaseClass, TOOAPIDateRange, TOOAPISkyCoord, TOOAPIAutoRe
 
 
 # Backwards compatible class name aliases
-Swift_TOO_Requests = TOORequests
 SwiftTOORequests = TOORequests
-Swift_TOORequests = TOORequests
+SwiftTOORequests = TOORequests
+SwiftTOORequests = TOORequests

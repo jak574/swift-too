@@ -126,5 +126,5 @@ class TOOAPITriggerTime:
     def triggertime(self, tt):
         self._triggertime = convert_to_dt(tt)
 
-    # Alias for Swift_TOO
+    # Alias for SwiftTOO
     grb_triggertime = triggertime
