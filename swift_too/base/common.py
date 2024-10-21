@@ -172,7 +172,7 @@ def _tablefy(table, header=None):
 
 class TOOAPIBaseClass(TOOAPIRepresentation):
     """
-    Base class for ACROSS API Classes including common methods for all API classes.
+    Base class for Swift TOO API Classes including common methods for all API classes.
     """
 
     # API descriptors type hints
@@ -264,7 +264,7 @@ class TOOAPIBaseClass(TOOAPIRepresentation):
 
     def get(self) -> bool:
         """
-        Perform a 'GET' submission to ACROSS API. Used for fetching
+        Perform a 'GET' submission to Swift TOO API. Used for fetching
         information.
 
         Returns
@@ -317,7 +317,7 @@ class TOOAPIBaseClass(TOOAPIRepresentation):
 
     def delete(self) -> bool:
         """
-        Perform a 'GET' submission to ACROSS API. Used for fetching
+        Perform a 'GET' submission to Swift TOO API. Used for fetching
         information.
 
         Returns
@@ -351,7 +351,7 @@ class TOOAPIBaseClass(TOOAPIRepresentation):
 
     def put(self, payload={}) -> bool:
         """
-        Perform a 'PUT' submission to ACROSS API. Used for pushing/replacing
+        Perform a 'PUT' submission to Swift TOO API. Used for pushing/replacing
         information.
 
         Returns
@@ -405,7 +405,7 @@ class TOOAPIBaseClass(TOOAPIRepresentation):
 
     def post(self) -> bool:
         """
-        Perform a 'PUT' submission to ACROSS API. Used for pushing/replacing
+        Perform a 'PUT' submission to Swift TOO API. Used for pushing/replacing
         information.
 
         Returns
