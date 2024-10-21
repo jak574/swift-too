@@ -1,6 +1,6 @@
 from pydantic import ValidationError
 
-from swift_too.swift.schema import SwiftGUANOGetSchema, SwiftGUANOSchema
+from .schema import SwiftGUANOGetSchema, SwiftGUANOSchema
 
 from ..base.common import TOOAPIBaseClass
 from ..base.daterange import TOOAPIDateRange, TOOAPITriggerTime

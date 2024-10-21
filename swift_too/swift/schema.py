@@ -3,9 +3,9 @@ from typing import Any, List, Literal, Optional, Union
 
 from pydantic import Field, computed_field, model_validator
 
-from swift_too.base.resolve import AutoResolveSchema
-from swift_too.base.skycoord import SkyCoordSchema
-from swift_too.swift.instruments import XRTMODES
+from ..base.resolve import AutoResolveSchema
+from ..base.skycoord import SkyCoordSchema
+from ..swift.instruments import XRTMODES
 
 from ..base.schema import (
     BaseSchema,

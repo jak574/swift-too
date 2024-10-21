@@ -1,4 +1,4 @@
-from swift_too.swift.clock import TOOAPIClockCorrect
+from .clock import TOOAPIClockCorrect
 
 from ..base.common import TOOAPIBaseClass
 from .obsquery import Swift_Observation

@@ -1,6 +1,6 @@
 from pydantic import ValidationError
 
-from swift_too.swift.schema import SwiftSAAGetSchema, SwiftSAASchema
+from .schema import SwiftSAAGetSchema, SwiftSAASchema
 from ..base.common import TOOAPIBaseClass
 from ..base.daterange import TOOAPIDateRange
 from ..base.schema import TOOStatus
