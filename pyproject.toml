@@ -1,0 +1,51 @@
+[project]
+name = "swift-too" # Required
+dynamic = ["version"]
+description = "Swift TOO API 2.0 Python client"
+readme = "README.md" # Optional
+
+requires-python = ">=3.9"
+
+keywords = ["astronomy", "api", "swift"] # Optional
+authors = [
+  { name = "Jamie A. Kennea", email = "jak51@psu.edu" }, # Optional
+]
+maintainers = [
+  { name = "Jamie A. Kennea", email = "jak51@psu.edu" }, # Optional
+]
+
+classifiers = [ # Optional
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3 :: Only",
+]
+
+dependencies = [ # Optional
+  "requests",
+  "pydantic",
+  "astropy",
+  "python-dateutil",
+]
+
+[tool.setuptools_scm]
+
+[project.optional-dependencies] # Optional
+dev = ["check-manifest"]
+test = ["coverage"]
+
+[project.scripts]
+
+[tool.setuptools]
+
+[tool.setuptools.package-data]
+"swift_too" = ["py.typed"]
+
+
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
