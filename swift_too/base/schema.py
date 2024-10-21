@@ -162,7 +162,7 @@ class OptionalDateRangeSchema(BaseSchema):
 
     begin: Optional[datetime] = None
     end: Optional[datetime] = None
-    length: Optional[float] = Field(None, include=False)
+    length: Optional[float] = Field(None, exclude=True)
 
     @model_validator(mode="before")
     @classmethod

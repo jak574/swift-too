@@ -145,4 +145,3 @@ class TOOAPIAutoResolve:
 
 # Shorthand alias for class
 SwiftResolve = Resolve
-SwiftResolve = Resolve
