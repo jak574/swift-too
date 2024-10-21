@@ -1,17 +1,18 @@
 from datetime import timedelta
 
+from pydantic import ValidationError
+
 from ..base.common import TOOAPIBaseClass
 from ..base.daterange import TOOAPIDateRange
 from ..base.resolve import TOOAPIAutoResolve
-from ..base.skycoord import TOOAPISkyCoord
 from ..base.schema import TOOStatus
+from ..base.skycoord import TOOAPISkyCoord
 from .clock import TOOAPIClockCorrect
 from .data import TOOAPIDownloadData
 
 # from .instruments import TOOAPIInstruments
 from .obsid import TOOAPIObsID
-from .schema import SwiftAFSTSchema, SwiftAFSTGetSchema
-from pydantic import ValidationError
+from .schema import SwiftAFSTGetSchema, SwiftAFSTSchema
 
 
 class Observation(TOOAPIBaseClass, TOOAPIDownloadData):

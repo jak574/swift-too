@@ -1,10 +1,11 @@
-from datetime import datetime, date, timezone
-from typing import Union, Optional
-from astropy.coordinates import Longitude, Latitude  # type: ignore[import]
-from astropy.units import Quantity, deg  # type: ignore[import]
-from dateutil import parser
 import re
 import warnings
+from datetime import date, datetime, timezone
+from typing import Optional, Union
+
+from astropy.coordinates import Latitude, Longitude  # type: ignore[import]
+from astropy.units import Quantity, deg  # type: ignore[import]
+from dateutil import parser
 
 # Check if we have astropy support
 HAS_ASTROPY = False

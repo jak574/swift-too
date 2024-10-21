@@ -1,5 +1,7 @@
 from textwrap import TextWrapper
+
 from tabulate import tabulate
+
 from ..functions import _tablefy
 
 

@@ -1,6 +1,5 @@
-from .clock import TOOAPIClockCorrect
-
 from ..base.common import TOOAPIBaseClass
+from .clock import TOOAPIClockCorrect
 from .obsquery import SwiftObservation
 from .schema import SwiftPlanGetSchema, SwiftPlanSchema
 

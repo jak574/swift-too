@@ -30,6 +30,7 @@ dependencies = [ # Optional
   "pydantic",
   "astropy",
   "python-dateutil",
+  "tabulate",
 ]
 
 [tool.setuptools_scm]

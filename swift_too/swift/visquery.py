@@ -1,11 +1,11 @@
+from pydantic import ValidationError
+
 from ..base.common import TOOAPIBaseClass
 from ..base.daterange import TOOAPIDateRange
 from ..base.resolve import TOOAPIAutoResolve
+from ..base.schema import TOOStatus, VisQueryGetSchema, VisQuerySchema
 from ..base.skycoord import TOOAPISkyCoord
-from ..base.schema import TOOStatus
-from ..base.schema import VisQuerySchema, VisQueryGetSchema
 from .clock import TOOAPIClockCorrect
-from pydantic import ValidationError
 
 
 class VisQuery(

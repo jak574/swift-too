@@ -1,11 +1,10 @@
 from pydantic import ValidationError
 
-from .schema import SwiftSAAGetSchema, SwiftSAASchema
 from ..base.common import TOOAPIBaseClass
 from ..base.daterange import TOOAPIDateRange
 from ..base.schema import TOOStatus
 from .clock import TOOAPIClockCorrect
-
+from .schema import SwiftSAAGetSchema, SwiftSAASchema
 
 # class SwiftSAAEntry(TOOAPIBaseClass, TOOAPIClockCorrect):
 #     """Simple class describing the start and end time of a Swift SAA passage.

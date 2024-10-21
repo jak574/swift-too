@@ -4,9 +4,6 @@ from typing import Any, List, Literal, Optional, Union
 from pydantic import Field, computed_field, model_validator
 
 from ..base.resolve import AutoResolveSchema
-from ..base.skycoord import SkyCoordSchema
-from ..swift.instruments import XRTMODES
-
 from ..base.schema import (
     BaseSchema,
     DateRangeSchema,
@@ -17,6 +14,8 @@ from ..base.schema import (
     TOOStatus,
     UserSchema,
 )
+from ..base.skycoord import SkyCoordSchema
+from ..swift.instruments import XRTMODES
 
 
 class SwiftInstrumentSchema(BaseSchema):

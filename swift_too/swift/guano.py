@@ -1,12 +1,10 @@
 from pydantic import ValidationError
 
-from .schema import SwiftGUANOGetSchema, SwiftGUANOSchema
-
 from ..base.common import TOOAPIBaseClass
 from ..base.daterange import TOOAPIDateRange, TOOAPITriggerTime
 from ..base.schema import TOOStatus
 from .clock import TOOAPIClockCorrect
-
+from .schema import SwiftGUANOGetSchema, SwiftGUANOSchema
 
 # class SwiftGUANOGTI(TOOAPIBaseClass, TOOAPIClockCorrect):
 #     """Define GUANO event data Good Time Intervals (GTI)

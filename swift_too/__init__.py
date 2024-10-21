@@ -144,8 +144,8 @@ served basis. Typically processing requests takes a 10-20 seconds. Status of
 requests can be queried, and errors are reported back.
 """
 
-from .base.resolve import Resolve, SwiftResolve  # noqa: F401
 from .base.query_job import QueryJob  # noqa: F401
+from .base.resolve import Resolve, SwiftResolve  # noqa: F401
 from .swift.calendar import Calendar, SwiftCalendar  # noqa: F401
 from .swift.clock import Clock, SwiftClock  # noqa: F401
 from .swift.commands import (  # noqa: F401

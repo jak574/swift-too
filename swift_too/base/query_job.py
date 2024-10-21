@@ -1,4 +1,3 @@
-from .status import TOOStatus
 from ..swift.calendar import Calendar
 from ..swift.clock import Clock
 from ..swift.data import Data
@@ -9,6 +8,7 @@ from ..swift.requests import TOORequests
 from ..swift.saa import SAA
 from ..swift.uvot import UVOTMode
 from ..swift.visquery import VisQuery
+from .status import TOOStatus
 
 
 class QueryJob(TOOStatus):
