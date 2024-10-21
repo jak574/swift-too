@@ -27,7 +27,7 @@ classifiers = [ # Optional
 
 dependencies = [ # Optional
   "requests",
-  "pydantic",
+  "pydantic>2",
   "astropy",
   "python-dateutil",
   "tabulate",
