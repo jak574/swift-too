@@ -69,9 +69,9 @@ def convert_to_dt(value, isutc=False, outfunc=datetime):
             raise ValueError(
                 "Date/time given as string should 'YYYY-MM-DD HH:MM:SS' or ISO8601 format."
             )
-    elif type(value) == date:
+    elif isinstance(value, date):
         dtvalue = outfunc.strptime(f"{value} 00:00:00", "%Y-%m-%d %H:%M:%S")
-    elif type(value) == outfunc:
+    elif isinstance(value, outfunc):
         if value.tzinfo is not None:
             # Strip out timezone info and convert to UTC
             value = value.astimezone(timezone.utc).replace(tzinfo=None)
