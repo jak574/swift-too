@@ -1,16 +1,22 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
       - id: check-yaml
       - id: end-of-file-fixer
       - id: trailing-whitespace
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
-    rev: v0.6.9
+    rev: v0.14.1
     hooks:
       # Run the linter.
       - id: ruff
-        args: [ --extend-select, "I", --fixable, "I", --fix ]
+        args: [--extend-select, "I", --fixable, "I", --fix]
       # Run the formatter.
       - id: ruff-format
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: v0.24.1
+    hooks:
+      - id: validate-pyproject
+        name: Validate pyproject.toml
+        description: Verify that pyproject.toml adheres to the established schema.
